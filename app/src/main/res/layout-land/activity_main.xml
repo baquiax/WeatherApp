@@ -11,9 +11,18 @@
     tools:context=".activities.MainActivity">
 
     <fragment
+        android:id="@+id/searchFragment"
+        android:name="edu.galileo.baquiax.fragments.SearchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".65"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
+        android:id="@+id/forecastFragment"
         android:name="edu.galileo.android.weatherapp.fragments.ForecastFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".35"
-        tools:layout="@layout/fragment_forecast_list"></fragment>
+        tools:layout="@layout/fragment_forecast_list"/>
 </LinearLayout>

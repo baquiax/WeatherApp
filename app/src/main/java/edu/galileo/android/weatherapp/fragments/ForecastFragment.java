@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,6 +22,9 @@ import edu.galileo.android.weatherapp.model.WeatherInfo;
 public class ForecastFragment extends Fragment implements OnItemClickListener, ForecastFragmentListener {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
+    @Bind(R.id.cityTitle)
+    TextView cityTitle;
+
     private CustomRecyclerAdapter adapter;
 
     public ForecastFragment() {
@@ -66,5 +70,9 @@ public class ForecastFragment extends Fragment implements OnItemClickListener, F
     @Override
     public void addToList(WeatherInfo info) {
         adapter.addElement(info);
+    }
+
+    public void searchCity(String cityName) {
+        this.cityTitle.setText(cityName);
     }
 }
