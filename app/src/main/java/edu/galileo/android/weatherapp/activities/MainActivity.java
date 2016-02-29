@@ -17,15 +17,16 @@ import edu.galileo.android.weatherapp.model.WeatherInfo;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
-    @Bind(R.id.inputCity) EditText inputCity;
 
+/*
+    @Bind(R.id.inputCity) EditText inputCity;
     @Bind(R.id.txtTemp) TextView txtTemp;
     @Bind(R.id.txtTempMin) TextView txtTempMin;
     @Bind(R.id.txtTempMax) TextView txtTempMax;
     @Bind(R.id.txtSunrise) TextView txtSunrise;
     @Bind(R.id.txtSunset) TextView txtSunset;
     @Bind(R.id.txtDescription) TextView txtDescription;
-    @Bind(R.id.imgIcon) ImageView imgIcon;
+    @Bind(R.id.imgIcon) ImageView imgIcon;*/
 
     WeatherInfo info;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btnSubmit)
+   /* @OnClick(R.id.btnSubmit)
     public void handleClick(){
         String strInput = inputCity.getText().toString();
         Log.e(TAG, strInput);
@@ -69,5 +70,5 @@ public class MainActivity extends AppCompatActivity {
         String iconUrl = "http://openweathermap.org/img/w/" + iconName + ".png";
         Glide.with(this).load(iconUrl).into(imgIcon);
 
-    }
+    }*/
 }

@@ -4,6 +4,7 @@ package edu.galileo.android.weatherapp.model;
  * Created by ykro.
  */
 public class WeatherInfo {
+    private String countryName;
     private String description;
     private String iconName;
     private String temp;
@@ -68,4 +69,11 @@ public class WeatherInfo {
         this.sunset = sunset;
     }
 
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
 }
