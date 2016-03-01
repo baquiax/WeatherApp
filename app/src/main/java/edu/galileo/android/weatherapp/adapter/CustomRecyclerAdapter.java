@@ -55,11 +55,12 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
         cal.setTime(new Date());
         cal.add(Calendar.DAY_OF_YEAR,-1);
         Date oneDayBefore= cal.getTime();
-        cal.add(Calendar.DAY_OF_YEAR, -2);
+        cal.add(Calendar.DAY_OF_YEAR, -1);
         Date twoDayBefore= cal.getTime();
+        cal.setTime(new Date());
         cal.add(Calendar.DAY_OF_YEAR,1);
         Date oneDayAfter= cal.getTime();
-        cal.add(Calendar.DAY_OF_YEAR,2);
+        cal.add(Calendar.DAY_OF_YEAR,1);
         Date twoDayAfter= cal.getTime();
         DateFormat format=new SimpleDateFormat("EEEE");
 
