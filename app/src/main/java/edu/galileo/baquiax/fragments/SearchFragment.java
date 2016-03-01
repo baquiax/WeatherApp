@@ -60,4 +60,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             this.channel = (SearchCommunication)context;
         }
     }
+
+    @Override
+    public void  onResume() {
+        super.onResume();
+        if (this.channel != null && inputCity.getText().toString().length() > 0) {
+            this.channel.searchCity(inputCity.getText().toString());
+        }
+    }
 }

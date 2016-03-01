@@ -20,20 +20,7 @@ import edu.galileo.baquiax.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements SearchCommunication {
     private final static String TAG = "MainActivity";
-    SearchFragment search;
     ForecastFragment forecast;
-
-/*
-    @Bind(R.id.inputCity) EditText inputCity;
-    @Bind(R.id.txtTemp) TextView txtTemp;
-    @Bind(R.id.txtTempMin) TextView txtTempMin;
-    @Bind(R.id.txtTempMax) TextView txtTempMax;
-    @Bind(R.id.txtSunrise) TextView txtSunrise;
-    @Bind(R.id.txtSunset) TextView txtSunset;
-    @Bind(R.id.txtDescription) TextView txtDescription;
-    @Bind(R.id.imgIcon) ImageView imgIcon;*/
-
-    WeatherInfo info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,45 +28,10 @@ public class MainActivity extends AppCompatActivity implements SearchCommunicati
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         this.forecast = (ForecastFragment) getSupportFragmentManager().findFragmentById(R.id.forecastFragment);
-
-        info = new WeatherInfo();
-        info.setDescription("nubes rotas");
-        info.setIconName("04n");
-        info.setSunrise("1453465879");
-        info.setSunset("1453506955");
-        info.setTemp("21");
-        info.setTempMin("21");
-        info.setTempMax("21");
-
     }
 
     @Override
     public void searchCity(String cityName) {
         forecast.searchCity(cityName);
     }
-
-   /* @OnClick(R.id.btnSubmit)
-    public void handleClick(){
-        String strInput = inputCity.getText().toString();
-        Log.e(TAG, strInput);
-
-        String strTemp = getString(R.string.main_message_temp);
-        strTemp = String.format(strTemp, info.getTemp());
-        txtTemp.setText(strTemp);
-
-        String strTempMin = getString(R.string.main_message_min);
-        strTempMin = String.format(strTempMin, info.getTempMin());
-        txtTempMin.setText(strTempMin);
-
-        String strTempMax = getString(R.string.main_message_max);
-        strTempMax = String.format(strTempMax, info.getTempMax());
-        txtTempMax.setText(strTempMax);
-
-        txtDescription.setText(info.getDescription());
-
-        String iconName = info.getIconName();
-        String iconUrl = "http://openweathermap.org/img/w/" + iconName + ".png";
-        Glide.with(this).load(iconUrl).into(imgIcon);
-
-    }*/
 }

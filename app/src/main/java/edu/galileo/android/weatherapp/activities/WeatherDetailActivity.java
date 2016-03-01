@@ -58,12 +58,12 @@ public class WeatherDetailActivity extends AppCompatActivity {
         strTempMax = String.format(strTempMax, intent.getStringExtra(MAX_KEY));
         txtTempMax.setText(strTempMax);
 
-        String strSunrise = getString(R.string.main_message_sunrise);
-        strSunrise = String.format(strTempMax, intent.getStringExtra(SUNRISE_KEY));
-        txtSunrise.setText(strSunrise);
+        String strSunrises = getString(R.string.main_message_sunrise);
+        strSunrises = String.format(strSunrises, intent.getStringExtra(SUNRISE_KEY));
+        txtSunrise.setText(strSunrises);
 
         String strSunset = getString(R.string.main_message_sunset);
-        strSunset = String.format(strTempMax, intent.getStringExtra(SUNSET_KEY));
+        strSunset = String.format(strSunset, intent.getStringExtra(SUNSET_KEY));
         txtSunset.setText(strSunset);
 
         txtDescription.setText(intent.getStringExtra(DESCRIPTION_KEY));

@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#084cf8"
-        android:text="Country"
+        android:text=""
         android:textStyle="bold"
-        android:capitalize="characters"
+        android:capitalize="words"
         android:textAlignment="center"
-        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textSize="20dp"
         android:layout_margin="10dp"
         />
 

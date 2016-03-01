@@ -73,7 +73,7 @@ public class ForecastFragment extends Fragment implements OnItemClickListener, F
     }
 
     public void searchCity(String cityName) {
-        this.cityTitle.setText(cityName);
+        this.cityTitle.setText(cityName.toUpperCase());
         adapter.filterByCountry(cityName);
     }
 }

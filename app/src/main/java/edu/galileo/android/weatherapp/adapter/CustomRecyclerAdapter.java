@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -45,17 +49,34 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
         String[] minTemp = {"12","11","15","17","8"};
         String[] maxTemp = {"22","21","19","20","28"};
         String[] temp = {"15","16","17","19","13"};
+        String[] sunrise = {"6:20","6:10","6:00","5:40","6:13"};
+        String[] sunset = {"7:10","7:00","6:45","7:30","5:50"};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DAY_OF_YEAR,-1);
+        Date oneDayBefore= cal.getTime();
+        cal.add(Calendar.DAY_OF_YEAR, -2);
+        Date twoDayBefore= cal.getTime();
+        cal.add(Calendar.DAY_OF_YEAR,1);
+        Date oneDayAfter= cal.getTime();
+        cal.add(Calendar.DAY_OF_YEAR,2);
+        Date twoDayAfter= cal.getTime();
+        DateFormat format=new SimpleDateFormat("EEEE");
+
+        String[] days = {format.format(twoDayBefore), format.format(oneDayBefore), "TODAY!",
+                format.format(oneDayAfter), format.format(twoDayAfter)};
 
         for (int i = 0; i < 5 ; i++) {
             WeatherInfo info = new WeatherInfo();
-            info.setSunrise("1453465879");
-            info.setSunset("1453506955");
             int j = (int)(0 + (Math.random() * (5)));
+            info.setSunrise(sunrise[j]);
+            info.setSunset(sunset[j]);
             info.setDescription(descriptions[j]);
             info.setIconName(icons[j]);
             info.setTemp(temp[j]);
             info.setTempMin(minTemp[j]);
             info.setTempMax(maxTemp[j]);
+            info.setDate(days[i]);
             dataset.add(info);
         }
         this.countriesDataset.put(country, dataset);
@@ -75,7 +96,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         WeatherInfo element = currentDataset.get(position);
-
+        holder.dayOfWeek.setText(element.getDate());
         String strTempMin = context.getString(R.string.main_message_min);
         strTempMin = String.format(strTempMin, element.getTempMin());
         holder.txtTempMin.setText(strTempMin);
@@ -104,7 +125,6 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     public void filterByCountry(String country) {
         List<WeatherInfo> l= countriesDataset.get(country.toLowerCase().trim());
-        Log.d("FilterByCountry", ">> " + l);
         if (l == null) {
             currentDataset = new ArrayList<>();
         } else {
@@ -119,6 +139,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.dayOfWeek) TextView dayOfWeek;
         @Bind(R.id.txtTempMin)
         TextView txtTempMin;
         @Bind(R.id.txtTempMax)

@@ -25,12 +25,6 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:id="@+id/txtDescription" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:id="@+id/imgIcon" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,4 +76,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginBottom="@dimen/weather_bottom_padding_small"
         android:id="@+id/txtSunset" />
+
+    <ImageView
+        android:layout_width="128dip"
+        android:layout_height="128dip"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imgIcon" />
 </LinearLayout>
