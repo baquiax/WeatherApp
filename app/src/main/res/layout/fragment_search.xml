@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/main.input.message"
+            android:maxLines="1"
             android:id="@+id/inputCity" />
     </android.support.design.widget.TextInputLayout>
     <Button

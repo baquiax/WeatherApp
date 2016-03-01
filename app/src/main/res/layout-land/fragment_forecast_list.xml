@@ -9,7 +9,14 @@
         android:id="@+id/cityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#084cf8" />
+        android:textColor="#084cf8"
+        android:text="Country"
+        android:textStyle="bold"
+        android:capitalize="characters"
+        android:textAlignment="center"
+        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:layout_margin="10dp"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

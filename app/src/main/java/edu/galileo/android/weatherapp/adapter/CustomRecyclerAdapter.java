@@ -2,6 +2,7 @@ package edu.galileo.android.weatherapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,27 +24,41 @@ import edu.galileo.android.weatherapp.model.WeatherInfo;
  */
 public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder> {
     private Context context;
-    private List<WeatherInfo> dataset;
+    private HashMap<String, List<WeatherInfo>> countriesDataset;
+    private List<WeatherInfo> currentDataset;
     private OnItemClickListener clickListener;
 
     public CustomRecyclerAdapter(Context context) {
         this.context = context;
-        this.dataset = new ArrayList<WeatherInfo>();
-        fillWithElements();
+        this.countriesDataset = new HashMap<String, List<WeatherInfo>>();
+        this.currentDataset = new ArrayList<>();
+        String[] countries = {"guatemala", "peru", "el salvador", "china", "rusia"};
+        for (int i = 0; i < countries.length; i++) {
+            fillWithElements(countries[i]);
+        }
     }
 
-    private void fillWithElements() {
-        for (int i = 0; i < 20 ; i++) {
+    private void fillWithElements(String country) {
+        List<WeatherInfo> dataset = new ArrayList<WeatherInfo>();
+        String[] icons = {"01d","04n", "10n", "50n", "04n"};
+        String[] descriptions = {"Despejado","Nublado", "Lluvioso", "Con Niebla", "Nubarrón"};
+        String[] minTemp = {"12","11","15","17","8"};
+        String[] maxTemp = {"22","21","19","20","28"};
+        String[] temp = {"15","16","17","19","13"};
+
+        for (int i = 0; i < 5 ; i++) {
             WeatherInfo info = new WeatherInfo();
-            info.setDescription("nubes rotas");
-            info.setIconName("04n");
             info.setSunrise("1453465879");
             info.setSunset("1453506955");
-            info.setTemp("21");
-            info.setTempMin("21");
-            info.setTempMax("21");
-            this.dataset.add(info);
+            int j = (int)(0 + (Math.random() * (5)));
+            info.setDescription(descriptions[j]);
+            info.setIconName(icons[j]);
+            info.setTemp(temp[j]);
+            info.setTempMin(minTemp[j]);
+            info.setTempMax(maxTemp[j]);
+            dataset.add(info);
         }
+        this.countriesDataset.put(country, dataset);
     }
     public void setOnItemClickListener(OnItemClickListener clickListener) {
         this.clickListener = clickListener;
@@ -57,7 +74,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WeatherInfo element = dataset.get(position);
+        WeatherInfo element = currentDataset.get(position);
 
         String strTempMin = context.getString(R.string.main_message_min);
         strTempMin = String.format(strTempMin, element.getTempMin());
@@ -77,16 +94,27 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return currentDataset.size();
     }
 
     public void addElement(WeatherInfo element) {
-        dataset.add(element);
+        currentDataset.add(element);
+        notifyDataSetChanged();
+    }
+
+    public void filterByCountry(String country) {
+        List<WeatherInfo> l= countriesDataset.get(country.toLowerCase().trim());
+        Log.d("FilterByCountry", ">> " + l);
+        if (l == null) {
+            currentDataset = new ArrayList<>();
+        } else {
+            currentDataset = l;
+        }
         notifyDataSetChanged();
     }
 
     public void clear() {
-        dataset.clear();
+        currentDataset.clear();
         notifyDataSetChanged();
     }
 
