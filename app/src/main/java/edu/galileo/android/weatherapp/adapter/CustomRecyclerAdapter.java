@@ -27,8 +27,22 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     public CustomRecyclerAdapter(Context context) {
         this.context = context;
         this.dataset = new ArrayList<WeatherInfo>();
+        fillWithElements();
     }
 
+    private void fillWithElements() {
+        for (int i = 0; i < 20 ; i++) {
+            WeatherInfo info = new WeatherInfo();
+            info.setDescription("nubes rotas");
+            info.setIconName("04n");
+            info.setSunrise("1453465879");
+            info.setSunset("1453506955");
+            info.setTemp("21");
+            info.setTempMin("21");
+            info.setTempMax("21");
+            this.dataset.add(info);
+        }
+    }
     public void setOnItemClickListener(OnItemClickListener clickListener) {
         this.clickListener = clickListener;
     }
